@@ -597,12 +597,48 @@ msy@msy-virtual-machine:~/Cpp-Knowledge-Notes$
 
 //引用
 
-// #include <iostream>
-// int main(){
-//     int a = 1;
-//     int &ra = a;//ra是a的引用，引用也就是别名，a再取了一个名称
-//     a = 2;
-//     ra = 3;
-//     std::cout<<a<<std::endl;
-// }
+#include <iostream>
+int main(){
+    int a = 1;
+    int &ra = a;//ra是a的引用，引用也就是别名，a再取了一个名称
+    a = 2;
+    ra = 3;
+    std::cout<<a<<std::endl;
+}
+// Dump of assembler code for function main():
+//    0x00000000000011c9 <+0>:     endbr64 
+//    0x00000000000011cd <+4>:     push   %rbp
+//    0x00000000000011ce <+5>:     mov    %rsp,%rbp
+//    0x00000000000011d1 <+8>:     sub    $0x20,%rsp
+//    0x00000000000011d5 <+12>:    mov    %fs:0x28,%rax
+//    0x00000000000011de <+21>:    mov    %rax,-0x8(%rbp)
+//    0x00000000000011e2 <+25>:    xor    %eax,%eax
+//    0x00000000000011e4 <+27>:    movl   $0x1,-0x14(%rbp) //把1放入寄存器中
+//    0x00000000000011eb <+34>:    lea    -0x14(%rbp),%rax //寄存器的
+//    0x00000000000011ef <+38>:    mov    %rax,-0x10(%rbp)
+//    0x00000000000011f3 <+42>:    movl   $0x2,-0x14(%rbp)
+//    0x00000000000011fa <+49>:    mov    -0x10(%rbp),%rax
+// --Type <RET> for more, q to quit, c to continue without paging--
+// 汇编的源码
 
+
+// 601     int main(){
+//    0x00000000000011c9 <+0>:     endbr64 
+//    0x00000000000011cd <+4>:     push   %rbp
+//    0x00000000000011ce <+5>:     mov    %rsp,%rbp
+//    0x00000000000011d1 <+8>:     sub    $0x20,%rsp
+//    0x00000000000011d5 <+12>:    mov    %fs:0x28,%rax
+//    0x00000000000011de <+21>:    mov    %rax,-0x8(%rbp)
+//    0x00000000000011e2 <+25>:    xor    %eax,%eax
+
+// 602         int a = 1;
+//    0x00000000000011e4 <+27>:    movl   $0x1,-0x14(%rbp)
+
+// 603         int &ra = a;//ra是a的引用，引用也就是别名，a再取了一个名称
+//    0x00000000000011eb <+34>:    lea    -0x14(%rbp),%rax
+//    0x00000000000011ef <+38>:    mov    %rax,-0x10(%rbp)
+
+// 604         a = 2;
+//    0x00000000000011f3 <+42>:    movl   $0x2,-0x14(%rbp)
+
+// 605         ra = 3;
